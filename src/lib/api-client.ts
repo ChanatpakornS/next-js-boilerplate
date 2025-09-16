@@ -1,20 +1,20 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 export function setupApiBaseUrl() {
-  const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  const url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
   return `${url}/api`;
 }
 
 // Generic fetch function
 async function apiFetch<T>(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
 ): Promise<T> {
   const url = setupApiBaseUrl() + endpoint;
 
   const config: RequestInit = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       ...options.headers,
     },
     ...options,
@@ -46,7 +46,7 @@ export function useApiQuery<T>(
     enabled?: boolean;
     staleTime?: number;
     refetchOnWindowFocus?: boolean;
-  }
+  },
 ) {
   const queryKey = createQueryKey(path, params);
   const url = params ? `${path}?${new URLSearchParams(params)}` : path;
@@ -60,12 +60,12 @@ export function useApiQuery<T>(
 
 // Unified mutation hook with method switch
 export function useApiMutation<TData, TVariables = any>(
-  method: "post" | "patch" | "delete",
+  method: 'post' | 'patch' | 'delete',
   path: string,
   options?: {
     onSuccess?: (data: TData) => void;
     onError?: (error: Error) => void;
-  }
+  },
 ) {
   const queryClient = useQueryClient();
 
@@ -74,21 +74,21 @@ export function useApiMutation<TData, TVariables = any>(
       let requestOptions: RequestInit;
 
       switch (method.toLowerCase()) {
-        case "post":
+        case 'post':
           requestOptions = {
-            method: "POST",
+            method: 'POST',
             body: JSON.stringify(variables),
           };
           break;
-        case "patch":
+        case 'patch':
           requestOptions = {
-            method: "PATCH",
+            method: 'PATCH',
             body: JSON.stringify(variables),
           };
           break;
-        case "delete":
+        case 'delete':
           requestOptions = {
-            method: "DELETE",
+            method: 'DELETE',
           };
           break;
         default:

@@ -1,24 +1,25 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "@/styles/globals.css";
-import { ThemeProvider } from "@/components/theme/theme-provider";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+
+import '@/styles/globals.css';
+import { Footer } from '@/components/footer';
+import { Navbar } from '@/components/navbar';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Boilerplate App",
+  title: 'Boilerplate App',
   description:
-    "This is your description for your app, like this page created from Create Next App",
+    'This is your description for your app, like this page created from Create Next App',
 };
 
 export default function RootLayout({
@@ -27,12 +28,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <div className="min-h-screen">
+          <div className='min-h-screen'>
             <Navbar />
             <main>{children}</main>
           </div>
